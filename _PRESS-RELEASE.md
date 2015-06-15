@@ -17,40 +17,40 @@ Once the project moves into development, the press release can be used as a touc
  -->
  
 ## Heading ##
-  > Name the product in a way the reader (i.e. your target customers) will understand.
-  New Weather App "Under One Sky"
+<!--   > Name the product in a way the reader (i.e. your target customers) will understand.
+ -->  New Weather App "Under One Sky"
 
 ## Sub-Heading ##
-  > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
-  Allows users to relate to places around the world, and show they are places and not just titles on a map.
+<!--   > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+ -->  Allows users to relate to places around the world, and show they are places and not just titles on a map.
 
 ## Summary ##
-  > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
-  Under One Sky shows the current weather from locations around the world. Sometimes when we look at a map, the
+<!--   > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+ -->  Under One Sky shows the current weather from locations around the world. Sometimes when we look at a map, the
   cities and countries seem like just titles and colors. However there are real people there now, and experiencing
   real weather just like we do.
 
 ## Problem ##
-  > Describe the problem your product solves.
-  There is a lack of personal connection with foreign places as more than just images or titles.
+<!--   > Describe the problem your product solves.
+ -->  There is a lack of personal connection with foreign places as more than just images or titles.
 
 ## Solution ##
-  > Describe how your product elegantly solves the problem.
-  Everyone can relate with weather. Weather can be a bridge to help someone develop a personal connection
+<!--   > Describe how your product elegantly solves the problem.
+ -->  Everyone can relate with weather. Weather can be a bridge to help someone develop a personal connection
   with other places in the world.
 
 ## Quote from You ##
-  > A quote from a spokesperson in your company.
-  "We all share the weather"
+<!--   > A quote from a spokesperson in your company.
+ -->  "We all share the weather"
 
 ## How to Get Started ##
-  > Describe how easy it is to get started.
-  Simply go to the website and you will see weather automatically loaded from places around the world.
+<!--   > Describe how easy it is to get started.
+ -->  Simply go to the website and you will see weather automatically loaded from places around the world.
 
 ## Customer Quote ##
-  > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
-  "Under One Sky helped me appreciate that real people live in places that my eyes glazed over on the map."
+<!--   > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+ -->  "Under One Sky helped me appreciate that real people live in places that my eyes glazed over on the map."
 
 ## Closing and Call to Action ##
-  > Wrap it up and give pointers where the reader should go next.
-  Visit Under One Sky today and experience it.
+<!--   > Wrap it up and give pointers where the reader should go next.
+ -->  Visit Under One Sky today and experience it.
