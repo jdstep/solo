@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Under One Sky</title>
+    <link rel="stylesheet" href="lib/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="styles/styles.css" />
+  </head>
+  <body ng-app="app">
+    <h1>Under One Sky</h1>
+    <div ng-controller="weatherController">
+      <p>{{ message }}</p>
+        <div id="place1">
+          <p>City: {{ place1.name }}</p>
+          <p>Country: {{place1.sys.country}}</p>
+          <p>Current Temp: {{place1.main.temp}}</p>
+          <p>Weather: {{ place1.weather[0].description }}
+        </div>
+        <button ng-click='genCoordinates()'>Get random coordinates</button>
+        <p>{{ coors }}</p>
+
+    </div>
+    <!-- scripts -->
+    <script src="lib/angular.min.js"></script>
+    <script src="lib/angular-ui-router.js"></script>
+    <script src="lib/ui-bootstrap-tpls-0.13.0.min.js"></script>
+    <script src="app/app.js"></script>
+    <script src="services/weatherController.js"></script>
+    <script src="services/weatherFactory.js"></script>
+  </body>
+  </html>
