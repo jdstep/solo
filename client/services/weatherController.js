@@ -1,24 +1,15 @@
-app.controller('weatherController', ['$scope', 'WeatherFactory', function($scope, WeatherFactory) {
+app.controller('weatherController', ['$scope', 'WeatherFactory', '$interval', function($scope, WeatherFactory, $interval) {
   $scope.message = "hello";
 
-  $scope.weather;
+  $scope.place = {};
 
   $scope.places = [];
-
-  $scope.place1 = {};
-
-  $scope.place2 = {};
-
-  $scope.place3 = {};
-
-  // $scope.coors = {};;
 
   $scope.pic = 'https://maps.googleapis.com/maps/api/streetview?size=600x300&location=46.414382,10.013988&heading=151.78&pitch=-0.76';
 
   var service = new google.maps.StreetViewService();
 
   var panoramaOptions = {
-      // position: berkeley,
       disableDefaultUI: true,
       scrollwheel: false
     };
@@ -30,49 +21,78 @@ app.controller('weatherController', ['$scope', 'WeatherFactory', function($scope
     var coors = {};
     coors.lat = Math.random() * 60;
     coors.lat = coors.lat * (Math.round(Math.random()) * 2 - 1)
-    coors.lng = Math.random() * 130;
+    coors.lng = Math.random() * 160;
     coors.lng = coors.lng * (Math.round(Math.random()) * 2 - 1)
-
-    console.dir(coors);
     return coors;
   };
 
-  $scope.setWeather = function(place, data) {
-    $scope[place] = data;
-    // $scope[place].pic = $scope.getStreetViewUrl($scope[place]);
-    $scope.places.push($scope[place]);
-    console.log($scope.places);
-    console.log($scope[place]);
-    $scope.getPanorama($scope[place]);
+  $scope.setCondition = function(conditionId) {
+    var condition;
+    // conditionId = parseInt(conditionId);
+    // console.log(conditionId);
+    if (200 <= conditionId && conditionId <= 299) {
+      condition = 'thunderstorm';
+    } else if ( 300 <= conditionId && conditionId <= 399 ) {
+      condition = 'drizzle';
+    } else if ( 500 <= conditionId && conditionId <= 599 ) {
+      condition = 'rain';
+    } else if ( 600 <= conditionId && conditionId <= 699 ) {
+      condition = 'snow';
+    } else if ( 700 <= conditionId && conditionId <= 799 ) {
+      condition = 'atmosphere';
+    } else if (conditionId === 800) {
+      condition = 'clear'
+    } else if ( 800 <= conditionId && conditionId <= 899 ) {
+      condition = 'clouds';
+    } else if ( 900 <= conditionId && conditionId <= 949 ) {
+      condition = 'extreme';
+    } else if ( 950 <= conditionId && conditionId <= 962 ) {
+      condition = 'wind';
+    }
+    return condition;
   };
 
-  $scope.getPanoramaAndWeather = function() {
+  $scope.getPanoramaAndWeather = function(firstTime) {
+
+    if ($scope.places.length >= 1) {
+      return;
+    }
+
+    var newPlace = {};
+
     var coors = $scope.genCoordinates();
 
     var coordinates = new google.maps.LatLng(coors.lat, coors.lng);
-
-    console.dir(coordinates);
-
-    console.log("trying to set the panorama");
     
     service.getPanoramaByLocation(coordinates, 100000, function(panoData, status) {
       if (status === 'ZERO_RESULTS') {
-        return $scope.getPanoramaAndWeather();
+        return $scope.getPanoramaAndWeather(firstTime);
       }
 
       WeatherFactory.getServerWeather(coordinates.A, coordinates.F).then(function(dataObj) {
         var weatherData = angular.fromJson(dataObj.data);
+
         if (weatherData.cod === '404') {
           console.log('coordinates do not point to a city');
-          return $scope.getPanoramaAndWeather();
-        } else {
-          // console.log(weatherDate);
-          panorama.setPano(panoData.location.pano);
-          panorama.setVisible(true);
-          $scope.place1 = weatherData;
-          // $scope.setWeather(place, weatherData);
-          // console.dir($scope.weather);
-          // $scope.place1 = $scope.weather;    
+          return $scope.getPanoramaAndWeather(firstTime);
+        } 
+        else {
+          newPlace._condition = $scope.setCondition(weatherData.weather[0].id);
+
+          console.dir(weatherData);
+          newPlace._panoData = panoData;
+
+          var country = weatherData.sys.country;
+          var countryName = getCountryName(country);
+          newPlace._country = countryName;
+          newPlace._weather = weatherData;
+          $scope.places.push(newPlace);
+          console.log($scope.places);
+          console.log(firstTime);
+          if (firstTime) {
+            console.log('calling for the first time and places length is ' + $scope.places.length);
+            $scope.showNewPlace();
+          }
         }
       }); 
       
@@ -80,60 +100,23 @@ app.controller('weatherController', ['$scope', 'WeatherFactory', function($scope
 
   };
 
-  $scope.getPanorama = function(placeObj) {
-    // google.maps.StreetViewService.getPanoramaByLocation(placeObj.coord, 10000000, function(data, status) {
-    //   console.log(data);
-    // });
-
-  
-
-    // console.log('trying to get coordinates from ' + placeObj);
-    console.dir(placeObj);
-    var coordinates = new google.maps.LatLng(placeObj.coord.lat, placeObj.coord.lon);
-
-    console.log('coordinates are now' + coordinates);
-
-    console.log("trying to set the panorama");
-   
-    service.getPanoramaByLocation(coordinates, 100000, function(data, status) {
-
-      console.log('about to show data');
-      console.dir(data);    
-      console.log('panorama status is', status);    
-      panorama.setPano(data.location.pano);
+  $scope.showNewPlace = function() {
+    if ($scope.places.length > 0) {
+      panorama.setVisible(false);
+      $scope.place = $scope.places.shift();
+      panorama.setPano($scope.place._panoData.location.pano);
       panorama.setVisible(true);
-
-
-    });
+    }
   };
 
 
-  $scope.getWeather = function(place) {
-    var coordinates = $scope.genCoordinates();
+  $scope.getPanoramaAndWeather(true);
+  
+  $interval(function(){ $scope.getPanoramaAndWeather(false)}, 1000);
 
-    console.log('coordinates are ' + coordinates);
-
-    WeatherFactory.getServerWeather(coordinates.lat, coordinates.lng).then(function(dataObj) {
-      var data = angular.fromJson(dataObj.data);
-      if (data.cod === '404') {
-        console.log('coordinates do not point to a city');
-        return $scope.getWeather(place);
-      } else {
-        // console.log(data);
-        $scope.setWeather(place, data);
-        // console.dir($scope.weather);
-        // $scope.place1 = $scope.weather;    
-      }
-    });
-
-  };
+  $interval($scope.showNewPlace, 5000);
 
 
-  // $scope.getWeather('place1');
-  // $scope.getWeather('place2');
-  // $scope.getWeather('place3');
-
-  $scope.getPanoramaAndWeather();
 
 
 

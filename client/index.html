@@ -6,48 +6,31 @@
     <link rel="stylesheet" href="lib/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="styles/styles.css" />
   </head>
-  <body ng-app="app">
-    <div class="page">
+  <body ng-app="app" ng-class="">
       <div class="container title">
         <h1 class="page-title text-center">Under One Sky</h1>
       </div>
-         
-
       <div class="weather-row" ng-controller="weatherController">
-        <div class="weather-box col-md-3">
+        <div class="weather-box col-md-3 text-right">
           <div class="weather-content-side">
-            <h2>City: {{ place1.name }}</h2>
-            <h4>Country: {{place1.sys.country}}</h4>
-            <p>Current Temp: {{place1.main.temp}}</p>
-            <p>Weather: {{ place1.weather[0].description }}</p>
+            <h2 class"place-name place-text" >{{ place._weather.name }}</h2>
+            <h4 class="place-country place-text">{{place._country}}</h4>
+            <p class="place-temp place-text">{{place._weather.main.temp}} degrees</p>
+            <p class="place-weather">{{ place._weather.weather[0].description }}</p>
           </div>
         </div>
         <div id="pano" class="col-md-9"></div>
-      </div>
-
-        <p>{{ message }}</p>
-        <!-- <div class="weather-box col-sm-"></div> -->
-
-        <!-- <div ng-repeat="place in places">
-          <div class="weather-box col-md-4">
-            <div class="weather-content">
-              <h2>City: {{ place.name }}</h2>
-              <h4>Country: {{place.sys.country}}</h4>
-              <p>Current Temp: {{place.main.temp}}</p>
-              <p>Weather: {{ place.weather[0].description }}</p>
-              <img ng-src="{{ place.pic }}" />
-            </div>
-          </div>
-        </div> -->
+        <input ng-model="weatherInput" placeholder="type a weather here">
+        <button ng-click="getPanoramaAndWeather(weatherInput)">Find Weather</button>
       </div>
     </div>
     <!-- scripts -->
     <script src="https://maps.googleapis.com/maps/api/js?sensor=false&key=AIzaSyAeyf1Qrr7uXcKXzZvOscehRiN2iGzeubc"></script>
-    <script src="services/maps.js"></script>
     <script src="lib/angular.min.js"></script>
     <script src="lib/angular-ui-router.js"></script>
     <script src="lib/ui-bootstrap-tpls-0.13.0.min.js"></script>
     <script src="app/app.js"></script>
+    <script src="services/countrycodes.js"></script>
     <script src="services/weatherController.js"></script>
     <script src="services/weatherFactory.js"></script>
   </body>

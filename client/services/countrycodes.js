@@ -249,7 +249,7 @@ var isoCountries = {
     'ZW' : 'Zimbabwe'
 };
 
-var getCountryName = getCountryName (countryCode) {
+var getCountryName = function (countryCode) {
     if (isoCountries.hasOwnProperty(countryCode)) {
         return isoCountries[countryCode];
     } else {
