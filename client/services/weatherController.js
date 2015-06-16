@@ -26,7 +26,6 @@ app.controller('weatherController', ['$scope', 'WeatherFactory', function($scope
   var panorama = new google.maps.StreetViewPanorama(document.getElementById('pano'), panoramaOptions);
 
 
-
   $scope.genCoordinates = function() {
     var coors = {};
     coors.lat = Math.random() * 60;
@@ -47,6 +46,40 @@ app.controller('weatherController', ['$scope', 'WeatherFactory', function($scope
     $scope.getPanorama($scope[place]);
   };
 
+  $scope.getPanoramaAndWeather = function() {
+    var coors = $scope.genCoordinates();
+
+    var coordinates = new google.maps.LatLng(coors.lat, coors.lng);
+
+    console.dir(coordinates);
+
+    console.log("trying to set the panorama");
+    
+    service.getPanoramaByLocation(coordinates, 100000, function(panoData, status) {
+      if (status === 'ZERO_RESULTS') {
+        return $scope.getPanoramaAndWeather();
+      }
+
+      WeatherFactory.getServerWeather(coordinates.A, coordinates.F).then(function(dataObj) {
+        var weatherData = angular.fromJson(dataObj.data);
+        if (weatherData.cod === '404') {
+          console.log('coordinates do not point to a city');
+          return $scope.getPanoramaAndWeather();
+        } else {
+          // console.log(weatherDate);
+          panorama.setPano(panoData.location.pano);
+          panorama.setVisible(true);
+          $scope.place1 = weatherData;
+          // $scope.setWeather(place, weatherData);
+          // console.dir($scope.weather);
+          // $scope.place1 = $scope.weather;    
+        }
+      }); 
+      
+    });
+
+  };
+
   $scope.getPanorama = function(placeObj) {
     // google.maps.StreetViewService.getPanoramaByLocation(placeObj.coord, 10000000, function(data, status) {
     //   console.log(data);
@@ -62,9 +95,15 @@ app.controller('weatherController', ['$scope', 'WeatherFactory', function($scope
 
     console.log("trying to set the panorama");
    
-    service.getPanoramaByLocation(coordinates, 1000000, function(data, status) {
-          panorama.setPano(data.location.pano);
-          panorama.setVisible(true);
+    service.getPanoramaByLocation(coordinates, 100000, function(data, status) {
+
+      console.log('about to show data');
+      console.dir(data);    
+      console.log('panorama status is', status);    
+      panorama.setPano(data.location.pano);
+      panorama.setVisible(true);
+
+
     });
   };
 
@@ -89,11 +128,12 @@ app.controller('weatherController', ['$scope', 'WeatherFactory', function($scope
 
   };
 
-  $scope.getWeather('place1');
+
+  // $scope.getWeather('place1');
   // $scope.getWeather('place2');
   // $scope.getWeather('place3');
 
-
+  $scope.getPanoramaAndWeather();
 
 
 
