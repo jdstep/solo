@@ -29,3 +29,7 @@ margin: 0 auto;
 .allblue {
   background-color: blue;
 }
+
+[ng\:cloak], [ng-cloak], .ng-cloak {
+    display: none;
+}

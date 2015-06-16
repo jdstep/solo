@@ -87,8 +87,6 @@ app.controller('weatherController', ['$scope', 'WeatherFactory', '$interval', fu
           newPlace._country = countryName;
           newPlace._weather = weatherData;
           $scope.places.push(newPlace);
-          console.log($scope.places);
-          console.log(firstTime);
           if (firstTime) {
             console.log('calling for the first time and places length is ' + $scope.places.length);
             $scope.showNewPlace();
@@ -112,9 +110,10 @@ app.controller('weatherController', ['$scope', 'WeatherFactory', '$interval', fu
 
   $scope.getPanoramaAndWeather(true);
   
-  $interval(function(){ $scope.getPanoramaAndWeather(false)}, 1000);
+  // UNCOMMENT THIS TO LOOP
+  // $interval(function(){ $scope.getPanoramaAndWeather(false)}, 1000);
 
-  $interval($scope.showNewPlace, 5000);
+  // $interval($scope.showNewPlace, 5000);
 
 
 
