@@ -8,17 +8,18 @@
   </head>
   <body ng-app="app">
     <h1>Under One Sky</h1>
-    <div ng-controller="weatherController">
+    <div class="container" ng-controller="weatherController">
       <p>{{ message }}</p>
-        <div id="place1">
-          <p>City: {{ place1.name }}</p>
-          <p>Country: {{place1.sys.country}}</p>
-          <p>Current Temp: {{place1.main.temp}}</p>
-          <p>Weather: {{ place1.weather[0].description }}
+      <div ng-repeat="place in places">
+        <div class="weather-box col-md-3">
+          <h2>City: {{ place.name }}</p>
+          <h4>Country: {{place.sys.country}}</p>
+          <p>Current Temp: {{place.main.temp}}</p>
+          <p>Weather: {{ place.weather[0].description }}</p>
         </div>
-        <button ng-click='genCoordinates()'>Get random coordinates</button>
-        <p>{{ coors }}</p>
-
+      </div>
+      <button ng-click='genCoordinates()'>Get random coordinates</button>
+      <p>{{ coors }}</p>
     </div>
     <!-- scripts -->
     <script src="lib/angular.min.js"></script>
