@@ -15,6 +15,11 @@ app.controller('weatherController', ['$scope', 'WeatherFactory', function($scope
 
   $scope.pic = 'https://maps.googleapis.com/maps/api/streetview?size=600x300&location=46.414382,10.013988&heading=151.78&pitch=-0.76';
 
+
+  var panorama = new google.maps.StreetViewPanorama(document.getElementById('pano'), {visible: false, panoProvider: $scope.getPanorama});
+
+  console.log(panorama);
+
   $scope.genCoordinates = function() {
     var coors = {};
     coors.lat = Math.random() * 60;
@@ -38,9 +43,31 @@ app.controller('weatherController', ['$scope', 'WeatherFactory', function($scope
     //   console.log(data);
     // });
     var service = new google.maps.StreetViewService();
-    // console.log(service);
-    service.getPanoramaByLocation({lat: 37.7833, lng: 122.4167}, 10000, function(data, status) {
-          console.log(data);
+    var berkeley = new google.maps.LatLng(37.869085, -122.254775);
+
+    // var mapOptions = {
+    //   center: berkeley,
+    //   zoom: 16,
+    //   streetViewControl: false
+    // };
+
+    var panoramaOptions = {
+        position: berkeley,
+        pov: {
+          heading: 34,
+          pitch: 10
+        }
+      };
+    
+    // var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+
+
+    console.log("trying to set the panorama");
+   
+    service.getPanoramaByLocation(berkeley, 10000, function(data, status) {
+          panorama.setPano(data.location.pano);
+          panorama.setVisible(true);
     });
   };
 
@@ -67,7 +94,8 @@ app.controller('weatherController', ['$scope', 'WeatherFactory', function($scope
   $scope.getWeather('place2');
   $scope.getWeather('place3');
 
-  $scope.getPanorama($scope.place1);
+
+  $scope.getPanorama(panorama);
 
 
 

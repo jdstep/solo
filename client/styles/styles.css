@@ -2,7 +2,7 @@
   /*background-color: aqua;*/
   height: 400px;
   padding: 20px;
-};
+}
 
 .col-centered{
 float: none;
@@ -18,4 +18,14 @@ margin: 0 auto;
 
 .weather-row {
   margin: 50px;
+}
+
+#map-canvas {
+  height: 300px;
+  width: 300px;
+}
+
+#pano {
+  height:300px;
+  width: 300px;
 }
