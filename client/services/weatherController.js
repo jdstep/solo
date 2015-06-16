@@ -15,10 +15,17 @@ app.controller('weatherController', ['$scope', 'WeatherFactory', function($scope
 
   $scope.pic = 'https://maps.googleapis.com/maps/api/streetview?size=600x300&location=46.414382,10.013988&heading=151.78&pitch=-0.76';
 
+  var service = new google.maps.StreetViewService();
 
-  var panorama = new google.maps.StreetViewPanorama(document.getElementById('pano'), {visible: false, panoProvider: $scope.getPanorama});
+  var panoramaOptions = {
+      // position: berkeley,
+      disableDefaultUI: true,
+      scrollwheel: false
+    };
 
-  console.log(panorama);
+  var panorama = new google.maps.StreetViewPanorama(document.getElementById('pano'), panoramaOptions);
+
+
 
   $scope.genCoordinates = function() {
     var coors = {};
@@ -36,36 +43,26 @@ app.controller('weatherController', ['$scope', 'WeatherFactory', function($scope
     // $scope[place].pic = $scope.getStreetViewUrl($scope[place]);
     $scope.places.push($scope[place]);
     console.log($scope.places);
+    console.log($scope[place]);
+    $scope.getPanorama($scope[place]);
   };
 
   $scope.getPanorama = function(placeObj) {
     // google.maps.StreetViewService.getPanoramaByLocation(placeObj.coord, 10000000, function(data, status) {
     //   console.log(data);
     // });
-    var service = new google.maps.StreetViewService();
-    var berkeley = new google.maps.LatLng(37.869085, -122.254775);
 
-    // var mapOptions = {
-    //   center: berkeley,
-    //   zoom: 16,
-    //   streetViewControl: false
-    // };
+  
 
-    var panoramaOptions = {
-        position: berkeley,
-        pov: {
-          heading: 34,
-          pitch: 10
-        }
-      };
-    
-    // var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+    // console.log('trying to get coordinates from ' + placeObj);
+    console.dir(placeObj);
+    var coordinates = new google.maps.LatLng(placeObj.coord.lat, placeObj.coord.lon);
 
-
+    console.log('coordinates are now' + coordinates);
 
     console.log("trying to set the panorama");
    
-    service.getPanoramaByLocation(berkeley, 10000, function(data, status) {
+    service.getPanoramaByLocation(coordinates, 1000000, function(data, status) {
           panorama.setPano(data.location.pano);
           panorama.setVisible(true);
     });
@@ -75,7 +72,9 @@ app.controller('weatherController', ['$scope', 'WeatherFactory', function($scope
   $scope.getWeather = function(place) {
     var coordinates = $scope.genCoordinates();
 
-    WeatherFactory.getServerWeather(coordinates.lat, coordinates.lon).then(function(dataObj) {
+    console.log('coordinates are ' + coordinates);
+
+    WeatherFactory.getServerWeather(coordinates.lat, coordinates.lng).then(function(dataObj) {
       var data = angular.fromJson(dataObj.data);
       if (data.cod === '404') {
         console.log('coordinates do not point to a city');
@@ -91,11 +90,10 @@ app.controller('weatherController', ['$scope', 'WeatherFactory', function($scope
   };
 
   $scope.getWeather('place1');
-  $scope.getWeather('place2');
-  $scope.getWeather('place3');
+  // $scope.getWeather('place2');
+  // $scope.getWeather('place3');
 
 
-  $scope.getPanorama(panorama);
 
 
 

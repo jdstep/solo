@@ -11,13 +11,24 @@
       <div class="container title">
         <h1 class="page-title text-center">Under One Sky</h1>
       </div>
-      <div id="pano"></div>
+         
 
       <div class="weather-row" ng-controller="weatherController">
+        <div class="weather-box col-md-3">
+          <div class="weather-content-side">
+            <h2>City: {{ place1.name }}</h2>
+            <h4>Country: {{place1.sys.country}}</h4>
+            <p>Current Temp: {{place1.main.temp}}</p>
+            <p>Weather: {{ place1.weather[0].description }}</p>
+          </div>
+        </div>
+        <div id="pano" class="col-md-9"></div>
+      </div>
+
         <p>{{ message }}</p>
         <!-- <div class="weather-box col-sm-"></div> -->
 
-        <div ng-repeat="place in places">
+        <!-- <div ng-repeat="place in places">
           <div class="weather-box col-md-4">
             <div class="weather-content">
               <h2>City: {{ place.name }}</h2>
@@ -27,7 +38,7 @@
               <img ng-src="{{ place.pic }}" />
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
     <!-- scripts -->
