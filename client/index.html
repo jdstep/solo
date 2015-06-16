@@ -11,7 +11,8 @@
       <div class="container title">
         <h1 class="page-title text-center">Under One Sky</h1>
       </div>
-      <div class="row weather-row" ng-controller="weatherController">
+      <div id="pan-pic"></div>
+      <div class="weather-row" ng-controller="weatherController">
         <p>{{ message }}</p>
         <!-- <div class="weather-box col-sm-"></div> -->
 
@@ -22,12 +23,15 @@
               <h4>Country: {{place.sys.country}}</h4>
               <p>Current Temp: {{place.main.temp}}</p>
               <p>Weather: {{ place.weather[0].description }}</p>
+              <img ng-src="{{ place.pic }}" />
             </div>
           </div>
         </div>
       </div>
     </div>
     <!-- scripts -->
+    <script src="https://maps.googleapis.com/maps/api/js?sensor=false&key=AIzaSyAeyf1Qrr7uXcKXzZvOscehRiN2iGzeubc"></script>
+    <script src="services/maps.js"></script>
     <script src="lib/angular.min.js"></script>
     <script src="lib/angular-ui-router.js"></script>
     <script src="lib/ui-bootstrap-tpls-0.13.0.min.js"></script>

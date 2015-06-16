@@ -1,6 +1,6 @@
 app.factory('WeatherFactory', function($http) {
 
-  var getServerWeathers = function(lat, lon) {
+  var getServerWeather = function(lat, lon) {
     return $http({
       method: 'GET',
       url: '/api/weather',
@@ -8,8 +8,16 @@ app.factory('WeatherFactory', function($http) {
     });
   };
 
+  var getStreetView = function(lat, lon) {
+    return $http({
+      method: 'GET',
+      url: 'https://maps.googleapis.com/maps/api/streetview?size=600x300&location=46.414382,10.013988&heading=151.78&pitch=-0.76'
+    });
+  };
+
   return {
-    getServerWeathers: getServerWeathers
+    getServerWeather: getServerWeather,
+    getStreetView: getStreetView
   };
 
 });
