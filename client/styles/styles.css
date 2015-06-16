@@ -2,7 +2,9 @@
   /*background-color: aqua;*/
   height: 400px;
   padding: 20px;
+  width: 200px;
 }
+
 
 .col-centered{
 float: none;
