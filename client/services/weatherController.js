@@ -16,6 +16,7 @@ app.controller('weatherController', ['$scope', 'WeatherFactory', '$interval', fu
 
   var panorama = new google.maps.StreetViewPanorama(document.getElementById('pano'), panoramaOptions);
 
+  $scope.fade = false;
 
   $scope.genCoordinates = function() {
     var coors = {};

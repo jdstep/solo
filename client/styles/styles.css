@@ -20,6 +20,16 @@ margin: 0 auto;
   margin: 50px;
 }
 
+h1 {
+  font-family: "Gloria Hallelujah";
+  font-size: 6em;
+
+}
+
+.place-text {
+  font-family: "Source Sans Pro";
+
+}
 
 #pano {
   height:500px;
@@ -32,4 +42,56 @@ margin: 0 auto;
 
 [ng\:cloak], [ng-cloak], .ng-cloak {
     display: none;
+}
+
+body {
+  /*background-color: rgb(253,253,253);*/
+  background-image: url('../lib/images/paper_fibers.png');
+}
+
+.clear.page-title,
+.clear.place-text,
+.rain.page-title,
+.rain.place-text,
+.clouds.page-title,
+.clouds.place-text{
+  transition: all 500ms linear;
+}
+
+.clouds {
+  /*background-color: rgb(213,222,217);*/
+}
+
+.clouds.page-title {
+ color: rgb(217,206,178);
+}
+
+.clouds.place-text {
+  color: rgb(122,106,83);
+  /*color: green;*/
+}
+
+.clear {
+  /*background-color: rgb(254,229,173);*/
+}
+
+
+.clear.page-title {
+  color: rgb(168,219,168);
+}
+
+.clear.place-text {
+  color: rgb(121,189,154);
+}
+
+.rain {
+  /*background-color: rgb(219,230,236);*/
+}
+
+.rain.page-title {
+  color: rgb(194,203,206);
+}
+
+.rain.place-text {
+  color: rgb(129,168,184);
 }
