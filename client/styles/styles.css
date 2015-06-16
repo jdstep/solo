@@ -54,12 +54,16 @@ body {
 .rain.page-title,
 .rain.place-text,
 .clouds.page-title,
-.clouds.place-text{
-  transition: all 500ms linear;
-}
-
-.clouds {
-  /*background-color: rgb(213,222,217);*/
+.clouds.place-text,
+.thunderstorm.page-title,
+.thunderstorm.place-text,
+.drizzle.page-title,
+.drizzle.place-text,
+.snow.page-title,
+.snow.place-text,
+.atomsphere.page-title,
+.atomsphere.place-text{
+  transition: all 700ms linear;
 }
 
 .clouds.page-title {
@@ -68,25 +72,17 @@ body {
 
 .clouds.place-text {
   color: rgb(122,106,83);
-  /*color: green;*/
-}
-
-.clear {
-  /*background-color: rgb(254,229,173);*/
 }
 
 
 .clear.page-title {
-  color: rgb(168,219,168);
+  color: rgb(250,190,40);
 }
 
 .clear.place-text {
-  color: rgb(121,189,154);
+  color: rgb(255,138,0);
 }
 
-.rain {
-  /*background-color: rgb(219,230,236);*/
-}
 
 .rain.page-title {
   color: rgb(194,203,206);
@@ -94,4 +90,36 @@ body {
 
 .rain.place-text {
   color: rgb(129,168,184);
+}
+
+.thunderstorm.page-title {
+  color: rgb(150,46,86);
+}
+
+.thunderstorm.place-text {
+  color: rgb(108,51,72);
+}
+
+.drizzle.page-title {
+  color: rgb(196,219,180);
+}
+
+.drizzle.place-text {
+  color: rgb(114,177,164);
+}
+
+.snow.page-title {
+  color: rgb(232,202,175);
+}
+
+.snow.place-text {
+  color: rgb(170,179,171);
+}
+
+.atmosphere.page-title {
+  color: rgb(168,168,120);
+}
+
+.atmosphere.place-text {
+  color: rgb(72,48,24);
 }
