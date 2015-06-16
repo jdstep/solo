@@ -8,6 +8,7 @@ var cors = require('cors');
 var app = express();
 
 app.use(express.static(path.join(__dirname, '../client')));
+
 app.use(cors());
 
 module.exports = app;

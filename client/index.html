@@ -7,19 +7,25 @@
     <link rel="stylesheet" type="text/css" href="styles/styles.css" />
   </head>
   <body ng-app="app">
-    <h1>Under One Sky</h1>
-    <div class="container" ng-controller="weatherController">
-      <p>{{ message }}</p>
-      <div ng-repeat="place in places">
-        <div class="weather-box col-md-3">
-          <h2>City: {{ place.name }}</p>
-          <h4>Country: {{place.sys.country}}</p>
-          <p>Current Temp: {{place.main.temp}}</p>
-          <p>Weather: {{ place.weather[0].description }}</p>
+    <div class="page">
+      <div class="container title">
+        <h1 class="page-title text-center">Under One Sky</h1>
+      </div>
+      <div class="row weather-row" ng-controller="weatherController">
+        <p>{{ message }}</p>
+        <!-- <div class="weather-box col-sm-"></div> -->
+
+        <div ng-repeat="place in places">
+          <div class="weather-box col-md-4">
+            <div class="weather-content">
+              <h2>City: {{ place.name }}</h2>
+              <h4>Country: {{place.sys.country}}</h4>
+              <p>Current Temp: {{place.main.temp}}</p>
+              <p>Weather: {{ place.weather[0].description }}</p>
+            </div>
+          </div>
         </div>
       </div>
-      <button ng-click='genCoordinates()'>Get random coordinates</button>
-      <p>{{ coors }}</p>
     </div>
     <!-- scripts -->
     <script src="lib/angular.min.js"></script>

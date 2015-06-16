@@ -1,8 +1,21 @@
 .weather-box {
-  background-color: aqua;
-  height: 350px;
+  /*background-color: aqua;*/
+  height: 400px;
+  padding: 20px;
 };
 
-h1 {
-  text-align: center;
+.col-centered{
+float: none;
+margin: 0 auto;
+}
+
+.weather-content {
+  background-color: green;
+  width: auto;
+  height: 100%;
+  padding: 5px 20px 0px 20px;
+}
+
+.weather-row {
+  margin: 50px;
 }
