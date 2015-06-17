@@ -27,7 +27,6 @@ app.get('/api/weather', function(req, res) {
   var lat = req.query.lat;
   var lon = req.query.lon;
 
-  console.log(lat, lon);
 
   request('http://api.openweathermap.org/data/2.5/weather?lat='+lat+'&lon='+lon+'&units=imperial', function(err, apires, body) {
     if (err) {
