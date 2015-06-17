@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="styles/styles.css" />
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Gloria+Hallelujah">
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
     <script src="https://maps.googleapis.com/maps/api/js?sensor=false&key=AIzaSyAeyf1Qrr7uXcKXzZvOscehRiN2iGzeubc"></script>
     <script src="lib/angular.min.js"></script>
@@ -23,14 +24,25 @@
   </head>
   <body ng-app="app" ng-controller="weatherController" ng-class="place._condition">
       <div class="container title">
-        <h1 class="page-title text-center" ng-class="place._condition">Under One Sky</h1>
+        <h1 class="page-title text-center" ng-class="place._condition" ng-click="showHideList()">Under One Sky</h1>
       </div>
       <div class="weather-row">
-        <div class="weather-box col-md-2 text-right">
+        <div class="weather-box col-md-1 text-right">
             <h2 class="place-name place-text" ng-class="place._condition" >{{ place._weather.name }}</h2>
             <h4 class="place-country place-text" ng-class="place._condition">{{place._country}}</h4>
-            <p class="place-temp place-text" ng-hide="!place._weather.main.temp" ng-class="place._condition">{{place._weather.main.temp}} degrees </p>
-            <p class="place-weather place-text" ng-class="place._condition">{{ place._weather.weather[0].description }}</p>
+            <h5 class="place-temp place-text" ng-show="place._weather.main.temp" ng-class="place._condition">{{place._weather.main.temp}} °F </h5>
+            <h5 class="place-weather place-text" ng-class="place._condition">{{ place._weather.weather[0].description }}</h5>
+            <div id="iconList" ng-show="showList">
+              <ul>
+                <li class="place-text" ng-class="place._condition" ng-click="setClickCondition('clear')" ><i class="fa fa-sun-o fa-2x"></i></li>
+                <li class="place-text" ng-class="place._condition" ng-click="setClickCondition('thunderstorm')" ><i class="fa fa-bolt fa-2x"></i></li>
+                <li class="place-text" ng-class="place._condition" ng-click="setClickCondition('rain')" ><i class="fa fa-umbrella fa-2x"></i></li>
+                <li class="place-text" ng-class="place._condition" ng-click="setClickCondition('drizzle')" ><i class="fa fa-tint fa-2x"></i></li>
+                <li class="place-text" ng-class="place._condition" ng-click="setClickCondition('clouds')" ><i class="fa fa-cloud fa-2x"></i></li>
+                <li class="place-text" ng-class="place._condition" ng-click="setClickCondition('snow')" ><i class="fa fa-moon-o fa-2x"></i></li>
+                <li class="place-text" ng-class="place._condition" ng-click="setClickCondition('atmosphere')" ><i class="fa fa-lightbulb-o fa-2x"></i></li>
+              </ul>
+            </div>
         </div>
         <div id="pano" class="col-md-8"></div>
         <input ng-model="weatherChange" class="col-md-4" placeholder="change the weather here">

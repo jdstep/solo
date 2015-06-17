@@ -28,6 +28,11 @@ h1 {
 
 }
 
+ul {
+  list-style-type: none;
+}
+
+
 .place-text {
   font-family: "Source Sans Pro";
 
@@ -63,8 +68,8 @@ body {
 .drizzle.place-text,
 .snow.page-title,
 .snow.place-text,
-.atomsphere.page-title,
-.atomsphere.place-text{
+.atmosphere.page-title,
+.atmosphere.place-text{
   transition: all 700ms linear;
 }
 
@@ -125,3 +130,4 @@ body {
 .atmosphere.place-text {
   color: rgb(72,48,24);
 }
+

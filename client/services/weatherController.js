@@ -5,7 +5,18 @@ app.controller('weatherController', ['$scope', 'WeatherFactory', '$interval', fu
 
   $scope.places = [];
 
-  $scope.pic = 'https://maps.googleapis.com/maps/api/streetview?size=600x300&location=46.414382,10.013988&heading=151.78&pitch=-0.76';
+  $scope.showList = false;
+
+
+  $scope.showHideList = function() {
+    console.log('trying to show or hide list');
+    $scope.showList = !$scope.showList;
+  };
+
+  $scope.setClickCondition = function(condition) {
+    console.log('trying to set the condition to' + condition);
+    $scope.place._condition = condition;
+  };
 
   var service = new google.maps.StreetViewService();
 
@@ -112,9 +123,9 @@ app.controller('weatherController', ['$scope', 'WeatherFactory', '$interval', fu
   $scope.getPanoramaAndWeather(true);
   
   // UNCOMMENT THIS TO LOOP
-  // $interval(function(){ $scope.getPanoramaAndWeather(false)}, 1000);
+  $interval(function(){ $scope.getPanoramaAndWeather(false)}, 1000);
 
-  // $interval($scope.showNewPlace, 5000);
+  $interval($scope.showNewPlace, 5000);
 
 
 
