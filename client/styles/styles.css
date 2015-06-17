@@ -1,5 +1,4 @@
 .weather-box {
-  /*background-color: aqua;*/
   height: 400px;
   padding: 20px;
   width: 200px;
@@ -52,10 +51,12 @@ ul {
 }
 
 body {
-  /*background-color: rgb(253,253,253);*/
   background-image: url('../lib/images/paper_fibers.png');
 }
 
+/*
+** ANIMATIONS
+*/
 .clear.page-title,
 .clear.place-text,
 .rain.page-title,

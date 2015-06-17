@@ -13,10 +13,15 @@ app.use(cors());
 
 module.exports = app;
 
+// sends the index on load
 app.get('/', function(req, res) {
     res.sendFile('index.html');
 });
+
+
+
  
+// gets weather data based on inputted coordinates
 app.get('/api/weather', function(req, res) {
   console.log(req.query);
   var lat = req.query.lat;
