@@ -25,6 +25,11 @@
   margin: 25px;
 }
 
+#links-box {
+  position: absolute;
+  bottom: 0;
+}
+
 h1 {
   font-family: "Gloria Hallelujah";
   font-size: 6em;
@@ -42,7 +47,7 @@ ul {
 }
 
 #pano {
-  height:500px;
+  height: 420px;
   pointer-events: none;
   /*width: 700px;*/
 }
