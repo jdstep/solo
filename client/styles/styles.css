@@ -4,6 +4,10 @@
   width: 200px;
 }
 
+.page-title {
+  margin-top: 0px;
+}
+
 
 .col-centered{
   float: none;
@@ -18,7 +22,7 @@
 }
 
 .weather-row {
-  margin: 20px;
+  margin: 25px;
 }
 
 h1 {
