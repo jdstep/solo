@@ -33,7 +33,8 @@ app.controller('weatherController', ['$scope', 'WeatherFactory', '$interval', fu
   // disables UI elements on panorama
   var panoramaOptions = {
       disableDefaultUI: true,
-      scrollwheel: false
+      scrollwheel: false,
+      draggable: false
     };
 
   // panorama that will be shown on the page, linked to the 'pano' ID
@@ -159,8 +160,8 @@ app.controller('weatherController', ['$scope', 'WeatherFactory', '$interval', fu
   $scope.getPanoramaAndWeather(true);
   
   // UNCOMMENT THESE INTERVAL CALLS TO LOOP
-  $interval(function(){ $scope.getPanoramaAndWeather(false)}, 1000);
-  $interval($scope.showNewPlace, 5000);
+  // $interval(function(){ $scope.getPanoramaAndWeather(false)}, 1000);
+  // $interval($scope.showNewPlace, 5000);
 
 
 

@@ -6,8 +6,8 @@
 
 
 .col-centered{
-float: none;
-margin: 0 auto;
+  float: none;
+  margin: 0 auto;
 }
 
 .weather-content {
@@ -18,7 +18,7 @@ margin: 0 auto;
 }
 
 .weather-row {
-  margin: 50px;
+  margin: 20px;
 }
 
 h1 {
@@ -39,6 +39,7 @@ ul {
 
 #pano {
   height:500px;
+  pointer-events: none;
   /*width: 700px;*/
 }
 
