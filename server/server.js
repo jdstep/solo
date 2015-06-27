@@ -23,14 +23,14 @@ app.get('/', function(req, res) {
  
 // gets weather data based on inputted coordinates
 app.get('/api/weather', function(req, res) {
-  console.log(req.query);
+  // console.log(req.query);
   var lat = req.query.lat;
   var lon = req.query.lon;
 
 
   request('http://api.openweathermap.org/data/2.5/weather?lat='+lat+'&lon='+lon+'&units=imperial', function(err, apires, body) {
     if (err) {
-      console.error(err);
+      // console.error(err);
       res.status(500).send('Error getting API data from server');
     } else {
       // console.log(body);

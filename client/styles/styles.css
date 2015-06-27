@@ -8,7 +8,9 @@
   margin-top: 0px;
 }
 
-
+h2 {
+  word-wrap: break-word;
+}
 .col-centered{
 /*  float: none;
   margin: 0 auto;*/
