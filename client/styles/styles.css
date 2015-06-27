@@ -1,9 +1,3 @@
-.weather-box {
-  /*height: 400px;*/
-  /*padding: 20px;*/
-  /*width: 200px;*/
-}
-
 .page-title {
   margin-top: 0px;
 }
@@ -11,29 +5,9 @@
 h2 {
   word-wrap: break-word;
 }
-.col-centered{
-/*  float: none;
-  margin: 0 auto;*/
-}
 
-.weather-content {
-  /*background-color: green;*/
-  /*width: auto;*/
-  /*height: 100%;*/
-  /*padding: 5px 20px 0px 20px;*/
-}
-
-.weather-row {
-  /*margin: 25px;*/
-}
 
 #links-box {
-/*  position: absolute;
-  top: 0px;*/
-/*  bottom: 0;
-  right: 0;
-  margin-right: 20px;
-  margin-bottom: 0px;*/
   margin-top: 11px;
 }
 
@@ -64,6 +38,7 @@ a {
 #pano {
   height: 420px;
   pointer-events: none;
+  background-color: #f1f3f3;
 }
 
 
