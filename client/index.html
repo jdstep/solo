@@ -21,29 +21,37 @@
       <div class="container title">
         <h1 class="page-title text-center" ng-class="place._condition" ng-click="showHideList()">Under One Sky</h1>
       </div>
-      <div class="weather-row">
-        <div class="weather-box col-md-1 text-right">
-            <h2 class="place-name place-text" ng-class="place._condition" >{{ place._weather.name }}</h2>
-            <h4 class="place-country place-text" ng-class="place._condition">{{place._country}}</h4>
-            <h5 class="place-temp place-text" ng-show="place._weather.main.temp" ng-class="place._condition">{{place._weather.main.temp}} °F </h5>
-            <h5 class="place-weather place-text" ng-class="place._condition">{{ place._weather.weather[0].description }}</h5>
-            <div id="iconList" ng-show="showList">
-              <ul>
-                <li class="place-text" ng-class="place._condition" ng-click="setClickCondition('clear')" ><i class="fa fa-sun-o fa-2x"></i></li>
-                <li class="place-text" ng-class="place._condition" ng-click="setClickCondition('thunderstorm')" ><i class="fa fa-bolt fa-2x"></i></li>
-                <li class="place-text" ng-class="place._condition" ng-click="setClickCondition('rain')" ><i class="fa fa-umbrella fa-2x"></i></li>
-                <li class="place-text" ng-class="place._condition" ng-click="setClickCondition('drizzle')" ><i class="fa fa-tint fa-2x"></i></li>
-                <li class="place-text" ng-class="place._condition" ng-click="setClickCondition('clouds')" ><i class="fa fa-cloud fa-2x"></i></li>
-                <li class="place-text" ng-class="place._condition" ng-click="setClickCondition('snow')" ><i class="fa fa-moon-o fa-2x"></i></li>
-                <li class="place-text" ng-class="place._condition" ng-click="setClickCondition('atmosphere')" ><i class="fa fa-lightbulb-o fa-2x"></i></li>
-              </ul>
+      <div class="content-row row">
+        <div class="sidebar-box col-sm-2 col-xs-12">
+          <div class="row">
+            <div class="weather-box col-sm-12 col-xs-6 text-right">
+              <h2 class="place-name place-text" ng-class="place._condition" >{{ place._weather.name }}</h2>
+              <h4 class="place-country place-text" ng-class="place._condition">{{place._country}}</h4>
+              <h5 class="place-temp place-text" ng-show="place._weather.main.temp" ng-class="place._condition">{{place._weather.main.temp}} °F </h5>
+              <h5 class="place-weather place-text" ng-class="place._condition">{{ place._weather.weather[0].description }}</h5>
+              <!-- UNCOMMENT THIS TO DEBUG THE WEATHER COLORS -->
+              <!-- <div id="iconList" ng-show="showList">
+                <ul>
+                  <li class="place-text" ng-class="place._condition" ng-click="setClickCondition('clear')" ><i class="fa fa-sun-o fa-2x"></i></li>
+                  <li class="place-text" ng-class="place._condition" ng-click="setClickCondition('thunderstorm')" ><i class="fa fa-bolt fa-2x"></i></li>
+                  <li class="place-text" ng-class="place._condition" ng-click="setClickCondition('rain')" ><i class="fa fa-umbrella fa-2x"></i></li>
+                  <li class="place-text" ng-class="place._condition" ng-click="setClickCondition('drizzle')" ><i class="fa fa-tint fa-2x"></i></li>
+                  <li class="place-text" ng-class="place._condition" ng-click="setClickCondition('clouds')" ><i class="fa fa-cloud fa-2x"></i></li>
+                  <li class="place-text" ng-class="place._condition" ng-click="setClickCondition('snow')" ><i class="fa fa-moon-o fa-2x"></i></li>
+                  <li class="place-text" ng-class="place._condition" ng-click="setClickCondition('atmosphere')" ><i class="fa fa-lightbulb-o fa-2x"></i></li>
+                </ul>
+              </div> -->
+              </div>
+              <div id="links-box" class="col-sm-12 col-xs-4 text-right">
+                <ul id="links-box">
+                  <li class="place-text" ng-class="place._condition"><a href="https://github.com/jdstep/under-one-sky">GitHub</a></li>
+                  <li class="place-text" ng-class="place._condition"><a href="http://jdcodes.io">About</a></li>
+                </ul>
+              </div>
             </div>
-            <ul id="links-box">
-              <li class="place-text" ng-class="place._condition"><a href="https://github.com/jdstep/under-one-sky">GitHub</a></li>
-              <li class="place-text" ng-class="place._condition"><a href="http://jdcodes.io">About</a>
-            </ul>
+
         </div>
-        <div id="pano" class="col-md-8"></div>
+        <div id="pano" class="col-sm-8 col-xs-12"></div>
       </div>
     </div>
 
