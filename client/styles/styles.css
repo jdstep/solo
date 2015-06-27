@@ -50,11 +50,7 @@ a {
   height: auto !important;
   height: 600px;
 }*/
-@media (min-width: @screen-md-min){
-  #pano {
-    height: 450px;
-  }
-}
+
 
 #pano {
   height: 75vh;
@@ -62,6 +58,29 @@ a {
 }
 
 
+@media (min-width: 992px){
+  #pano {
+    height: 450px;
+  }
+ 
+  li.sidebar-box {
+    display: inline;
+  }
+}
+
+.place-text {
+  font-size: 2.5em;
+}
+
+@media (min-width: 992px) {
+ .place-text {
+   font-size: 1em;
+ }
+}
+
+/*.place-text {
+  display: inline;
+}*/
 
 
 [ng\:cloak], [ng-cloak], .ng-cloak {
