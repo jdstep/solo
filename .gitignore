@@ -38,4 +38,4 @@ bower_components/
 key.md
 
 # google analytics
-client/app/services/googleanalytics.js
+client/services/googleanalytics.js
