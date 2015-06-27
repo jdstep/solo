@@ -131,6 +131,12 @@ app.controller('weatherController', ['$scope', 'WeatherFactory', '$interval', fu
           // store the weather data on the new place object
           newPlace._weather = weatherData;
 
+          newPlace._farenheit = Math.round(newPlace._weather.main.temp);
+
+          newPlace._celsius = Math.round(WeatherFactory.fToCelsius(newPlace._farenheit));
+
+          console.log(newPlace._farenheit, newPlace._celsius);
+
           // add the place object to the queue
           $scope.places.push(newPlace);
           // if this was the first time we called the function (on loading)

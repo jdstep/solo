@@ -15,9 +15,14 @@ app.factory('WeatherFactory', function($http) {
     });
   };
 
+  var fToCelsius = function(fTemp) {
+    return (fTemp - 32) * (5 / 9);
+  };
+
   return {
     getServerWeather: getServerWeather,
-    getStreetView: getStreetView
+    getStreetView: getStreetView,
+    fToCelsius: fToCelsius
   };
 
 });
