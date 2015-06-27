@@ -36,3 +36,6 @@ bower_components/
 
 # api key
 key.md
+
+# google analytics
+client/app/services/googleanalytics.js
