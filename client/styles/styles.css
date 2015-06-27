@@ -1,7 +1,10 @@
 html, body {
   height: 100vh;
-
+  overflow-x: hidden;
+  width: auto;
 }
+
+
 .page-title {
   margin-top: 0px;
 }
@@ -39,12 +42,12 @@ a {
 
 }
 
-/*#pano {
+#pano {
   height: 100%;
   pointer-events: none;
   background-color: #f1f3f3;
 }
-*/
+
 /*#pano {
   min-height: 400px;
   height: auto !important;
@@ -55,6 +58,7 @@ a {
 #pano {
   height: 75vh;
   overflow: auto;
+  pointer-events: none;
 }
 
 
