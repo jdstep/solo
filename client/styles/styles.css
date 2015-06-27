@@ -49,7 +49,7 @@ a {
 }
 
 #pano {
-  height: 65vh;
+  height: 70vh;
   overflow: auto;
   pointer-events: none;
 }
