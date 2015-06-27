@@ -160,8 +160,8 @@ app.controller('weatherController', ['$scope', 'WeatherFactory', '$interval', fu
   $scope.getPanoramaAndWeather(true);
   
   // UNCOMMENT THESE INTERVAL CALLS TO LOOP
-  // $interval(function(){ $scope.getPanoramaAndWeather(false)}, 1000);
-  // $interval($scope.showNewPlace, 3000);
+  $interval(function(){ $scope.getPanoramaAndWeather(false)}, 1000);
+  $interval($scope.showNewPlace, 8000);
 
 
 
