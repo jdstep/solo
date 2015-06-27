@@ -1,3 +1,7 @@
+html, body {
+  height: 100vh;
+
+}
 .page-title {
   margin-top: 0px;
 }
@@ -35,11 +39,29 @@ a {
 
 }
 
-#pano {
-  height: 420px;
+/*#pano {
+  height: 100%;
   pointer-events: none;
   background-color: #f1f3f3;
 }
+*/
+/*#pano {
+  min-height: 400px;
+  height: auto !important;
+  height: 600px;
+}*/
+@media (min-width: @screen-md-min){
+  #pano {
+    height: 450px;
+  }
+}
+
+#pano {
+  height: 75vh;
+  overflow: auto;
+}
+
+
 
 
 [ng\:cloak], [ng-cloak], .ng-cloak {
