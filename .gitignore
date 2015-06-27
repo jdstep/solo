@@ -34,7 +34,5 @@ bower_components/
 .floo
 .flooignore
 
-# Elastic Beanstalk Files
-.elasticbeanstalk/*
-!.elasticbeanstalk/*.cfg.yml
-!.elasticbeanstalk/*.global.yml
+# api key
+key.md
