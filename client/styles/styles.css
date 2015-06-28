@@ -1,7 +1,7 @@
 html, body {
   height: 100vh;
   overflow-x: hidden;
-  overflow: hidden;
+  overflow-y: hidden;
   width: auto;
 }
 
