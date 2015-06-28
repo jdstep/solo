@@ -9,36 +9,25 @@ html, body {
   margin-top: 0px;
 }
 
-h2 {
-  word-wrap: break-word;
-}
-
-
 #links-box {
-  margin-top: 11px;
+    margin-top: 0px;
 }
+
 
 .content-row {
-  margin-top: 25px;
+  margin-top: 5px;
 }
 
-h1 {
-  font-family: "Gloria Hallelujah";
-  font-size: 6em;
-
-}
 
 ul {
   list-style-type: none;
 }
 
-a {
-  color: inherit;
-  position: inherit;
-}
 
 .place-text {
   font-family: "Source Sans Pro";
+  margin-top: 0px;
+  margin-bottom: 5px;
 
 }
 
@@ -53,7 +42,30 @@ a {
   overflow: auto;
   pointer-events: none;
 }
+h1 {
+  font-family: "Gloria Hallelujah";
+  font-size: 25px;
+}
 
+h2 {
+  font-size: 16px;
+  word-wrap: break-word;
+
+}
+h3 {
+  font-size: 14px;
+}
+h4 {
+  font-size: 12px;
+}
+h5 {
+  font-size: 12px;
+}
+a {
+  color: inherit;
+  position: inherit;
+  font-size: 12px;
+}
 
 @media (min-width: 992px){
   #pano {
@@ -63,16 +75,27 @@ a {
   li.sidebar-box {
     display: inline;
   }
-}
-
-.place-text {
-  font-size: 2.5em;
-}
-
-@media (min-width: 992px) {
- .place-text {
-   font-size: 1em;
- }
+  h1 {
+    font-size: 72px;
+  }
+  h2 {
+    font-size: 30px;
+  }
+  h4 {
+    font-size: 18px;
+  }
+  h5 {
+    font-size: 14px;
+  }
+  .content-row {
+    margin-top: 25px;
+  }
+  #links-box {
+    margin-top: 11px;
+  }
+  a {
+    font-size: 14px;
+  }
 }
 
 [ng\:cloak], [ng-cloak], .ng-cloak {
@@ -82,6 +105,14 @@ a {
 body {
   background-image: url('../lib/images/paper_fibers.png');
 }
+
+@media (max-width: @screen-sm-max) { 
+  .place-text {
+    font-size: .2em;
+  }
+
+}
+
 
 /*
 ** ANIMATIONS
