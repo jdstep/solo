@@ -43,27 +43,25 @@ ul {
 }
 h1 {
   font-family: "Gloria Hallelujah";
-  font-size: 25px;
+  font-size: 30px;
 }
 
 h2 {
-  font-size: 16px;
+  font-size: 18px;
   word-wrap: break-word;
 
 }
-h3 {
+
+h4 {
   font-size: 14px;
 }
-h4 {
-  font-size: 12px;
-}
 h5 {
-  font-size: 12px;
+  font-size: 14px;
 }
 a {
   color: inherit;
   position: inherit;
-  font-size: 12px;
+  font-size: 14px;
 }
 @media (min-width: 768px){
  
@@ -99,13 +97,13 @@ a {
     font-size: 72px;
   }
   h2 {
-    font-size: 30px;
+    font-size: 35px;
   }
   h4 {
-    font-size: 18px;
+    font-size: 20px;
   }
   h5 {
-    font-size: 14px;
+    font-size: 16px;
   }
   .content-row {
     margin-top: 25px;
@@ -114,7 +112,7 @@ a {
     margin-top: 11px;
   }
   a {
-    font-size: 14px;
+    font-size: 16px;
   }
 }
 
