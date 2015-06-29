@@ -44,9 +44,9 @@ app.controller('weatherController', ['$scope', 'WeatherFactory', '$interval', fu
   $scope.genCoordinates = function() {
     var coors = {};
     coors.lat = Math.random() * 60;
-    coors.lat = coors.lat * (Math.round(Math.random()) * 2 - 1)
+    coors.lat = coors.lat * (Math.round(Math.random()) * 2 - 1);
     coors.lng = Math.random() * 160;
-    coors.lng = coors.lng * (Math.round(Math.random()) * 2 - 1)
+    coors.lng = coors.lng * (Math.round(Math.random()) * 2 - 1);
     return coors;
   };
 
@@ -66,7 +66,7 @@ app.controller('weatherController', ['$scope', 'WeatherFactory', '$interval', fu
     } else if ( 700 <= conditionId && conditionId <= 799 ) {
       condition = 'atmosphere';
     } else if (conditionId === 800) {
-      condition = 'clear'
+      condition = 'clear';
     } else if ( 800 <= conditionId && conditionId <= 899 ) {
       condition = 'clouds';
     } else if ( 900 <= conditionId && conditionId <= 949 ) {
@@ -131,10 +131,13 @@ app.controller('weatherController', ['$scope', 'WeatherFactory', '$interval', fu
           // store the weather data on the new place object
           newPlace._weather = weatherData;
 
+          console.log(newPlace._panoData);
+
           // store the farenheit temperature
           newPlace._farenheit = Math.round(newPlace._weather.main.temp);
           // store the celsius temperature
           newPlace._celsius = Math.round(WeatherFactory.fToCelsius(newPlace._farenheit));
+
 
           // add the place object to the queue
           $scope.places.push(newPlace);
@@ -165,7 +168,7 @@ app.controller('weatherController', ['$scope', 'WeatherFactory', '$interval', fu
   $scope.getPanoramaAndWeather(true);
   
   // UNCOMMENT THESE INTERVAL CALLS TO LOOP
-  $interval(function(){ $scope.getPanoramaAndWeather(false)}, 1000);
+  $interval(function(){ $scope.getPanoramaAndWeather(false);}, 1000);
   $interval($scope.showNewPlace, 8000);
 
 

@@ -35,6 +35,7 @@
               <h2 class="place-name place-text" ng-class="place._condition" >{{ place._weather.name }}</h2>
               <h5 class="place-country place-text" ng-class="place._condition">{{place._country}}</h4>
               <h5 class="place-temp place-text" ng-show="place._weather.main.temp" ng-class="place._condition">{{place._farenheit}} °F / {{place._celsius}} °C </h5>
+
               <h5 class="place-weather place-text" ng-class="place._condition">{{ place._weather.weather[0].description }}</h5>
               <!-- UNCOMMENT THIS TO DEBUG THE WEATHER COLORS -->
               <!-- <div id="iconList" ng-show="showList">
