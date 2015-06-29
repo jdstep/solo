@@ -13,7 +13,7 @@ Under One Sky
 * [Open Weather API](http://openweathermap.org/api)
 
 ## Contact
-* Name: JD
+* Name: Jonathan Davis
 * Homepage: http://www.jdcodes.io
 * Twitter: [@jdcodes](https://twitter.com/jdcodes)
 
