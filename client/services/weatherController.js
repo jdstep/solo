@@ -172,7 +172,4 @@ app.controller('weatherController', ['$scope', 'WeatherFactory', '$interval', fu
   $interval($scope.showNewPlace, 8000);
 
 
-
-
-
 }]);
