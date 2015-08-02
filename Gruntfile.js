@@ -53,7 +53,7 @@ module.exports = function(grunt) {
           {expand: true, src: ['client/lib/images/*'], flatten: true, dest: 'public/images', filter: 'isFile'},
           {expand: true, src: ['client/*.png'], dest: 'public/', filter: 'isFile'},
           {expand: true, src: ['client/*.ico'], dest: 'public/', filter: 'isFile'},
-          {expand: true, src: ['client/styles/styles.css'], flatten: true, dest: 'public/styles/', filter: 'isFile'},
+          // {expand: true, src: ['client/styles/styles.css'], flatten: true, dest: 'public/styles/', filter: 'isFile'},
 
         ]
       }
@@ -65,7 +65,7 @@ module.exports = function(grunt) {
       },
       target: {
         files: {
-          // 'public/stylesheets/style.css': ['/client/styles/styles.css']
+          'public/styles/styles.css': ['client/styles/styles.css']
         }
       }
     },
