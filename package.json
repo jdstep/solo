@@ -3,15 +3,14 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "postinstall": "grunt default",
+    "postinstall": "grunt build",
     "start": "node index.js"
   },
   "dependencies": {
     "cors": "^2.7.1",
     "debug": "~2.2.0",
     "express": "~4.12.4",
-    "request": "^2.58.0",
-    "serve-favicon": "~2.2.1"
+    "request": "^2.58.0"
   },
   "devDependencies": {
     "grunt": "^0.4.5",

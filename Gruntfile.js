@@ -82,7 +82,7 @@ module.exports = function(grunt) {
       },
     },
     concurrent: {  
-      dev: ["build", "nodemon", "watch"],
+      dev: ["build", "watch", "nodemon"],
       options: {
         logConcurrentOutput: true
       }
@@ -130,7 +130,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('default', ['concurrent']);
 
-  grunt.registerTask('heroku', ['jshint', 'concat', 'uglify']);
+  grunt.registerTask('heroku', ['build']);
 
 
 };
