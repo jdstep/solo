@@ -102,12 +102,13 @@ app.controller('weatherController', ['$scope', 'WeatherFactory', '$interval', fu
         // recursively call getPanoramaAndWeather with the data if it was the first call or not
         return $scope.getPanoramaAndWeather(firstTime);
       }
+      var panoramaLat = panoData.location.latLng.G;
+      var panoramaLng = panoData.location.latLng.K;
 
       // get the weather for the current coordinates
-      WeatherFactory.getServerWeather(coordinates.A, coordinates.F).then(function(dataObj) {
+      WeatherFactory.getServerWeather(panoramaLat, panoramaLng).then(function(dataObj) {
         // store the weather data from the ajax call
         var weatherData = angular.fromJson(dataObj.data);
-
         // if there was no weather found for the current location
         if (weatherData.cod === '404') {
           console.log('coordinates do not point to a city');
@@ -130,8 +131,6 @@ app.controller('weatherController', ['$scope', 'WeatherFactory', '$interval', fu
 
           // store the weather data on the new place object
           newPlace._weather = weatherData;
-
-          console.log(newPlace._panoData);
 
           // store the farenheit temperature
           newPlace._farenheit = Math.round(newPlace._weather.main.temp);
