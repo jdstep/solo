@@ -101,7 +101,7 @@ app.controller('weatherController', ['$scope', 'WeatherFactory', '$interval', fu
       if (status === 'ZERO_RESULTS') {
         // recursively call getPanoramaAndWeather with the data if it was the first call or not
         return $scope.getPanoramaAndWeather(firstTime);
-      }
+      } 
       var panoramaLat = panoData.location.latLng.G;
       var panoramaLng = panoData.location.latLng.K;
 
@@ -172,3 +172,5 @@ app.controller('weatherController', ['$scope', 'WeatherFactory', '$interval', fu
 
 
 }]);
+
+

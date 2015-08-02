@@ -2,7 +2,6 @@ var express = require('express');
 var path = require('path');
 var http = require('http');
 var request = require('request');
-var bluebird = require('bluebird');
 var cors = require('cors');
 
 var app = express();

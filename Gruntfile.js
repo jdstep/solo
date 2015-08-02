@@ -71,12 +71,40 @@ module.exports = function(grunt) {
     },
     clean: ["public/"],
     purifycss: {
-        options: {},
-        target: {
-          src: ['client/index.html', 'client/app/**/*.js'],
-          css: ['client/styles/bootstrap.min.css'],
-          dest: 'public/styles/bootstrap-purified.css'
-        },
+      options: {},
+      target: {
+        src: ['client/index.html', 'client/app/**/*.js'],
+        css: ['client/styles/bootstrap.min.css'],
+        dest: 'public/styles/bootstrap-purified.css'
+      },
+    },
+    concurrent: {  
+      dev: ["nodemon", "watch"],
+      options: {
+        logConcurrentOutput: true
+      }
+    },
+    nodemon: {  
+      dev: {
+        script: 'index.js',
+        options: {
+          nodeArgs: [],
+          watch: ['index.js', 'server/**.*.js'],
+          delay: 300,
+          callback: function (nodemon) {
+            nodemon.on('log', function (event) {
+              console.log(event.colour);
+            });
+          }
+        }
+      }
+    },
+    watch: {  
+      less: {
+        files: ["client/**/*"],
+        tasks: ['build'],
+        options: { nospawn: true }
+      }
     },
   });
 
@@ -89,9 +117,14 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-purifycss');
+  grunt.loadNpmTasks("grunt-nodemon");  
+  grunt.loadNpmTasks("grunt-concurrent");  
+  grunt.loadNpmTasks("grunt-contrib-watch"); 
 
 
-  grunt.registerTask('default', ['jshint', 'clean', 'concat', 'uglify', 'copy', 'cssmin', 'purifycss']);
+  grunt.registerTask('build', ['jshint', 'clean', 'concat', 'uglify', 'copy', 'cssmin', 'purifycss']);
+
+  grunt.registerTask('default', ['concurrent']);
 
   grunt.registerTask('heroku', ['jshint', 'concat', 'uglify']);
 
