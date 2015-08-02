@@ -24,11 +24,14 @@ module.exports = function(grunt) {
       }
     },
     uglify: {
-      my_target: {
+      dist: {
         files: {
           'public/js/sky.min.js': ['public/js/sky.js']
         }
-      }
+      },
+      options: {
+        mangle: false,
+      },
     },
     htmlmin: {                                     // Task
       dist: {                                      // Target
@@ -79,7 +82,7 @@ module.exports = function(grunt) {
       },
     },
     concurrent: {  
-      dev: ["nodemon", "watch"],
+      dev: ["build", "nodemon", "watch"],
       options: {
         logConcurrentOutput: true
       }
@@ -101,7 +104,7 @@ module.exports = function(grunt) {
     },
     watch: {  
       less: {
-        files: ["client/**/*"],
+        files: ["client/**/*.js", "client/index.html"],
         tasks: ['build'],
         options: { nospawn: true }
       }
@@ -119,7 +122,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-purifycss');
   grunt.loadNpmTasks("grunt-nodemon");  
   grunt.loadNpmTasks("grunt-concurrent");  
-  grunt.loadNpmTasks("grunt-contrib-watch"); 
+  grunt.loadNpmTasks("grunt-contrib-watch");
+
 
 
   grunt.registerTask('build', ['jshint', 'clean', 'concat', 'uglify', 'copy', 'cssmin', 'purifycss']);
