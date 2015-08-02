@@ -69,6 +69,7 @@ module.exports = function(grunt) {
         }
       }
     },
+    clean: ["public/"]
   });
 
   grunt.loadNpmTasks('grunt-contrib-jshint');
@@ -78,8 +79,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-purifycss');
   grunt.loadNpmTasks('grunt-contrib-htmlmin');
   grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-clean');
 
-  grunt.registerTask('default', ['jshint', 'concat', 'uglify', 'copy', 'cssmin']);
+
+  grunt.registerTask('default', ['jshint', 'clean', 'concat', 'uglify', 'copy', 'cssmin']);
 
   grunt.registerTask('heroku', ['jshint', 'concat', 'uglify']);
 
