@@ -255,4 +255,4 @@ var getCountryName = function (countryCode) {
     } else {
         return countryCode;
     }
-}
+};
