@@ -26,3 +26,4 @@ app.factory('WeatherFactory', function($http) {
   };
 
 });
+
