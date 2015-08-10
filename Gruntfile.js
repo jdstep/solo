@@ -33,9 +33,9 @@ module.exports = function(grunt) {
         mangle: false,
       },
     },
-    htmlmin: {                                     // Task
-      dist: {                                      // Target
-        options: {                                 // Target options
+    htmlmin: {                                     
+      dist: {                                      
+        options: {                                 
           removeComments: true,
           collapseWhitespace: true
         },
@@ -52,11 +52,9 @@ module.exports = function(grunt) {
       },
       main : {
         files: [
-          // includes files within path
           {expand: true, src: ['client/lib/images/*'], flatten: true, dest: 'public/images', filter: 'isFile'},
           {expand: true, src: ['client/*.png'], dest: 'public/', filter: 'isFile'},
           {expand: true, src: ['client/*.ico'], dest: 'public/', filter: 'isFile'},
-          // {expand: true, src: ['client/styles/styles.css'], flatten: true, dest: 'public/styles/', filter: 'isFile'},
 
         ]
       }
@@ -125,7 +123,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks("grunt-contrib-watch");
 
 
-
+  // prepares files for deployment
   grunt.registerTask('build', ['jshint', 'clean', 'concat', 'uglify', 'copy', 'cssmin', 'purifycss']);
 
   grunt.registerTask('default', ['concurrent']);
