@@ -14,7 +14,7 @@ Under One Sky
 
 ## Contact
 * Name: Jonathan Davis
-* Homepage: http://www.jdcodes.io
+* Blog: http://www.jdcodes.io
 
 ## License
 This project is licensed under the terms of the MIT license.
