@@ -56,13 +56,15 @@ app.controller('weatherController', ['$scope', 'WeatherFactory', '$interval', fu
     var condition;
     var conditionIdLower = conditionId.toLowerCase();
 
+    console.log("CONDITION IS", conditionIdLower);
+
     if (conditionIdLower === 'rain') {
       condition = 'rain';
     } else if ( conditionIdLower === 'snow' ) {
       condition = 'snow';
-    } else if (conditionIdLower === 'clear-day' || 'clear-night') {
+    } else if (conditionIdLower === 'clear-day' || conditionIdLower === 'clear-night') {
       condition = 'clear';
-    } else if ( conditionIdLower === 'cloudy') {
+    } else if ( conditionIdLower === 'cloudy' || 'partly-cloudy-night' || 'partly-cloudy-day') {
       condition = 'clouds';
     } else if ( conditionIdLower === 'wind') {
       condition = 'wind';
@@ -112,7 +114,7 @@ app.controller('weatherController', ['$scope', 'WeatherFactory', '$interval', fu
         } 
         else {
           // sets the current condition for setting CSS styles
-          newPlace._condition = $scope.setCondition(weatherData.currently.summary);
+          newPlace._condition = $scope.setCondition(weatherData.currently.icon);
 
           // store the panorama data
           newPlace._panoData = panoData;
@@ -122,11 +124,9 @@ app.controller('weatherController', ['$scope', 'WeatherFactory', '$interval', fu
             var cityData = angular.fromJson(dataObj.data);
 
             // temporarily store the country code from the weather data on the new place object
-            console.dir(cityData.results[0]);
             var country = cityData.results[0].address_components[cityData.results[0].address_components.length - 2].short_name;
             // get the name of the country based on the weather code
             var countryName = getCountryName(country);
-            console.log('country', country);
             // store the full name of the country on the new place object
             newPlace._country = countryName;
 
@@ -164,7 +164,6 @@ app.controller('weatherController', ['$scope', 'WeatherFactory', '$interval', fu
     if ($scope.places.length > 0) {
       panorama.setVisible(false);
       $scope.place = $scope.places.shift();
-      console.dir($scope.place);
       panorama.setPano($scope.place._panoData.location.pano);
       panorama.setVisible(true);
     }
