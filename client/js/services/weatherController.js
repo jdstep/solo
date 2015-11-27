@@ -55,9 +55,7 @@ app.controller('weatherController', ['$scope', 'WeatherFactory', '$interval', fu
   $scope.setCondition = function(conditionId) {
     var condition;
     var conditionIdLower = conditionId.toLowerCase();
-
-    console.log("CONDITION IS", conditionIdLower);
-
+    
     if (conditionIdLower === 'rain') {
       condition = 'rain';
     } else if ( conditionIdLower === 'snow' ) {
