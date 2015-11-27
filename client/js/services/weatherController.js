@@ -54,24 +54,17 @@ app.controller('weatherController', ['$scope', 'WeatherFactory', '$interval', fu
   // a string representing the condition for CSS class styling
   $scope.setCondition = function(conditionId) {
     var condition;
-    
-    if (200 <= conditionId && conditionId <= 299) {
-      condition = 'thunderstorm';
-    } else if ( 300 <= conditionId && conditionId <= 399 ) {
-      condition = 'drizzle';
-    } else if ( 500 <= conditionId && conditionId <= 599 ) {
+    var conditionIdLower = conditionId.toLowerCase();
+
+    if (conditionIdLower === 'rain') {
       condition = 'rain';
-    } else if ( 600 <= conditionId && conditionId <= 699 ) {
+    } else if ( conditionIdLower === 'snow' ) {
       condition = 'snow';
-    } else if ( 700 <= conditionId && conditionId <= 799 ) {
-      condition = 'atmosphere';
-    } else if (conditionId === 800) {
+    } else if (conditionIdLower === 'clear-day' || 'clear-night') {
       condition = 'clear';
-    } else if ( 800 <= conditionId && conditionId <= 899 ) {
+    } else if ( conditionIdLower === 'cloudy') {
       condition = 'clouds';
-    } else if ( 900 <= conditionId && conditionId <= 949 ) {
-      condition = 'extreme';
-    } else if ( 950 <= conditionId && conditionId <= 962 ) {
+    } else if ( conditionIdLower === 'wind') {
       condition = 'wind';
     }
     return condition;
@@ -102,8 +95,6 @@ app.controller('weatherController', ['$scope', 'WeatherFactory', '$interval', fu
         // recursively call getPanoramaAndWeather with the data if it was the first call or not
         return $scope.getPanoramaAndWeather(firstTime);
       } 
-      // var panoramaLat = panoData.location.latLng.G;
-      // var panoramaLng = panoData.location.latLng.K;
 
       var panoramaLat = panoData.location.latLng.lat();
       var panoramaLng = panoData.location.latLng.lng();
@@ -111,46 +102,56 @@ app.controller('weatherController', ['$scope', 'WeatherFactory', '$interval', fu
       // get the weather for the current coordinates
       WeatherFactory.getServerWeather(panoramaLat, panoramaLng).then(function(dataObj) {
         // store the weather data from the ajax call
-        // var weatherData = angular.fromJson(dataObj.data);
-        console.dir(dataObj.data);
-        var weatherData = dataObj.data;
+        var weatherData = angular.fromJson(dataObj.data);
 
         // if there was no weather found for the current location
-        if (weatherData.cod === '404') {
+        if (weatherData.cod === '400') {
           console.log('coordinates do not point to a city');
         // recursively call getPanoramaAndWeather with the data if it was the first call or not
           return $scope.getPanoramaAndWeather(firstTime);
         } 
         else {
           // sets the current condition for setting CSS styles
-          newPlace._condition = $scope.setCondition(weatherData.weather[0].id);
+          newPlace._condition = $scope.setCondition(weatherData.currently.summary);
 
           // store the panorama data
           newPlace._panoData = panoData;
 
-          // temporarily store the country code from the weather data on the new place object
-          var country = weatherData.sys.country;
-          // get the name of the country based on the weather code
-          var countryName = getCountryName(country);
-          // store the full name of the country on the new place object
-          newPlace._country = countryName;
+          WeatherFactory.getCityData(panoramaLat, panoramaLng).then(function(dataObj) {
 
-          // store the weather data on the new place object
-          newPlace._weather = weatherData;
+            var cityData = angular.fromJson(dataObj.data);
 
-          // store the farenheit temperature
-          newPlace._farenheit = Math.round(newPlace._weather.main.temp);
-          // store the celsius temperature
-          newPlace._celsius = Math.round(WeatherFactory.fToCelsius(newPlace._farenheit));
+            // temporarily store the country code from the weather data on the new place object
+            console.dir(cityData.results[0]);
+            var country = cityData.results[0].address_components[cityData.results[0].address_components.length - 2].short_name;
+            // get the name of the country based on the weather code
+            var countryName = getCountryName(country);
+            console.log('country', country);
+            // store the full name of the country on the new place object
+            newPlace._country = countryName;
+
+            var city = cityData.results[0].address_components[3].long_name;
+
+            newPlace._city = city;
+            // store the weather data on the new place object
+            newPlace._weather = weatherData;
+
+            // store the farenheit temperature
+            newPlace._farenheit = Math.round(newPlace._weather.currently.temperature);
+            // store the celsius temperature
+            newPlace._celsius = Math.round(WeatherFactory.fToCelsius(newPlace._farenheit));
 
 
-          // add the place object to the queue
-          $scope.places.push(newPlace);
-          // if this was the first time we called the function (on loading)
-          if (firstTime) {
-            // show the new location immediately, rather than waiting for the interval show the location
-            $scope.showNewPlace();
-          }
+            // add the place object to the queue
+            $scope.places.push(newPlace);
+            // if this was the first time we called the function (on loading)
+            if (firstTime) {
+              // show the new location immediately, rather than waiting for the interval show the location
+              $scope.showNewPlace();
+            }
+
+          });
+
         }
       }); 
 
@@ -163,10 +164,12 @@ app.controller('weatherController', ['$scope', 'WeatherFactory', '$interval', fu
     if ($scope.places.length > 0) {
       panorama.setVisible(false);
       $scope.place = $scope.places.shift();
+      console.dir($scope.place);
       panorama.setPano($scope.place._panoData.location.pano);
       panorama.setVisible(true);
     }
   };
+
 
   // on page load, gets the first panorama and weather data
   // must be called with 'true' so the panorama is rendered immediately

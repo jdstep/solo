@@ -11,7 +11,14 @@ app.factory('WeatherFactory', ['$http', function($http) {
   var getStreetView = function(lat, lon) {
     return $http({
       method: 'GET',
-      url: 'https://maps.googleapis.com/maps/api/streetview?size=600x300&location=46.414382,10.013988&heading=151.78&pitch=-0.76'
+      url: 'https://maps.googleapis.com/maps/api/streetview?size=600x300&location=' + lat + ',' + lon + '&heading=151.78&pitch=-0.76'
+    });
+  };
+
+  var getCityData = function(lat, lon) {
+    return $http({
+      method: 'GET',
+      url: 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat + ',' + lon
     });
   };
 
@@ -22,6 +29,7 @@ app.factory('WeatherFactory', ['$http', function($http) {
   return {
     getServerWeather: getServerWeather,
     getStreetView: getStreetView,
+    getCityData: getCityData,
     fToCelsius: fToCelsius
   };
 

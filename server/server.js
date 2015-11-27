@@ -25,9 +25,8 @@ app.get('/api/weather', function(req, res) {
   // console.log(req.query);
   var lat = req.query.lat;
   var lon = req.query.lon;
-  console.log('lat ' + lat + 'lon ' + lon);
   var apiKey = '7b0ed8759039f9abcb76bfb7987a193c';
-  var requestAPICall = 'https://api.forecast.io/forecast/7b0ed8759039f9abcb76bfb7987a193c/' + lat + ',' + lon;
+  var requestAPICall = 'https://api.forecast.io/forecast/7b0ed8759039f9abcb76bfb7987a193c/' + lat + ',' + lon + '?exclude=minutely,hourly,daily,alerts';
   // var requestAPICall = 'https://api.forecast.io/forecast/7b0ed8759039f9abcb76bfb7987a193c/51,1';
 
   // request('http://api.openweathermap.org/data/2.5/weather?lat='+lat+'&lon='+lon+'&units=imperial' + '&APPID=774321dc5f42638e28e60f6c63e16902', function(err, apires, body) {
