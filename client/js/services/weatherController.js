@@ -11,7 +11,7 @@ app.controller('weatherController', ['$scope', 'WeatherFactory', '$interval', fu
   // FOR DEBUGGING
   // on page load, does not show the list of debug weather icons
   $scope.showList = false;
-
+  
 
   // FOR DEBUGGING
   // toggles hiding and showing the debug conditions list 
@@ -102,13 +102,19 @@ app.controller('weatherController', ['$scope', 'WeatherFactory', '$interval', fu
         // recursively call getPanoramaAndWeather with the data if it was the first call or not
         return $scope.getPanoramaAndWeather(firstTime);
       } 
-      var panoramaLat = panoData.location.latLng.G;
-      var panoramaLng = panoData.location.latLng.K;
+      // var panoramaLat = panoData.location.latLng.G;
+      // var panoramaLng = panoData.location.latLng.K;
+
+      var panoramaLat = panoData.location.latLng.lat();
+      var panoramaLng = panoData.location.latLng.lng();
 
       // get the weather for the current coordinates
       WeatherFactory.getServerWeather(panoramaLat, panoramaLng).then(function(dataObj) {
         // store the weather data from the ajax call
-        var weatherData = angular.fromJson(dataObj.data);
+        // var weatherData = angular.fromJson(dataObj.data);
+        console.dir(dataObj.data);
+        var weatherData = dataObj.data;
+
         // if there was no weather found for the current location
         if (weatherData.cod === '404') {
           console.log('coordinates do not point to a city');
@@ -147,9 +153,9 @@ app.controller('weatherController', ['$scope', 'WeatherFactory', '$interval', fu
           }
         }
       }); 
-      
-    });
 
+    });
+  
   };
 
   // renders the new panorama by getting the first item in the queue 
@@ -170,6 +176,4 @@ app.controller('weatherController', ['$scope', 'WeatherFactory', '$interval', fu
   $interval(function(){ $scope.getPanoramaAndWeather(false);}, 1000);
   $interval($scope.showNewPlace, 8000);
 
-
 }]);
-

@@ -55,7 +55,8 @@ module.exports = function(grunt) {
           {expand: true, src: ['client/lib/images/*'], flatten: true, dest: 'public/images', filter: 'isFile'},
           {expand: true, src: ['client/*.png'], dest: 'public/', filter: 'isFile'},
           {expand: true, src: ['client/*.ico'], dest: 'public/', filter: 'isFile'},
-
+          {expand: true, src: ['client/*.ico'], dest: 'public/', filter: 'isFile'},
+          {expand: true, cwd: 'client/js', src: ['**'], dest: 'public/js'} 
         ]
       }
     },
@@ -102,7 +103,7 @@ module.exports = function(grunt) {
     },
     watch: {  
       less: {
-        files: ["client/**/*.js", "client/index.html"],
+        files: ["client/**/*.js", "client/index.html", "Gruntfile.js"],
         tasks: ['build'],
         options: { nospawn: true }
       }
@@ -125,11 +126,11 @@ module.exports = function(grunt) {
 
   // prepares files for deployment
   // grunt.registerTask('build', ['jshint', 'clean', 'concat', 'uglify', 'copy', 'cssmin', 'purifycss']);
-  grunt.registerTask('build', ['jshint', 'clean', 'copy', 'concat', 'cssmin', 'purifycss']);
+  grunt.registerTask('build', ['jshint', 'clean', 'copy', 'cssmin', 'purifycss']);
 
   grunt.registerTask('default', ['concurrent']);
 
   grunt.registerTask('heroku', ['build']);
 
-
+ 
 };
