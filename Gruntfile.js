@@ -124,7 +124,8 @@ module.exports = function(grunt) {
 
 
   // prepares files for deployment
-  grunt.registerTask('build', ['jshint', 'clean', 'concat', 'uglify', 'copy', 'cssmin', 'purifycss']);
+  // grunt.registerTask('build', ['jshint', 'clean', 'concat', 'uglify', 'copy', 'cssmin', 'purifycss']);
+  grunt.registerTask('build', ['jshint', 'clean', 'copy', 'concat', 'cssmin', 'purifycss']);
 
   grunt.registerTask('default', ['concurrent']);
 

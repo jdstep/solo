@@ -433,7 +433,7 @@ app.controller('weatherController', ['$scope', 'WeatherFactory', '$interval', fu
 }]);
 
 
-app.factory('WeatherFactory', function($http) {
+app.factory('WeatherFactory', ['$http', function($http) {
 
   var getServerWeather = function(lat, lon) {
     return $http({
@@ -460,5 +460,5 @@ app.factory('WeatherFactory', function($http) {
     fToCelsius: fToCelsius
   };
 
-});
+}]);
 
